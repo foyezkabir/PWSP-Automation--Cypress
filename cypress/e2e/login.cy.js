@@ -1,19 +1,19 @@
 describe('PWSP Login', () => {
-    it.only('TC-1: Login with Valid username & Password', () => {
+    it('TC-1: Login with Valid username & Password', () => {
       // Visit the PWSP login page
         cy.visit('/')
       //cy.visit('https://pwspadmindemo.shadintech.com/pages/login');
   
       // Fill in the Username field
       cy.get("#email").type('mahadihasanjoy')
-      cy.get("#email").invoke('prop', 'value').then(test => {
-        expect(test).to.equal('mahadihasanjoy')
+      cy.get("#email").invoke('prop', 'value').then(UsernameValue => {
+        expect(UsernameValue).to.equal('mahadihasanjoy')
       })
   
       // Fill in the password field
       cy.get("#password").type('Shadhin1995@')
-      cy.get("#password").invoke('prop', 'value').then(test1 => {
-        expect(test1).to.equal('Shadhin1995@')
+      cy.get("#password").invoke('prop', 'value').then(PasswordValue => {
+        expect(PasswordValue).to.equal('Shadhin1995@')
       })
   
       // Click on the login button
@@ -27,7 +27,15 @@ describe('PWSP Login', () => {
         cy.visit('/')
 
         cy.get("#email").type('mahadihasan')
+        cy.get("#email").invoke('prop', 'value').then(UsernameValue1 => {
+            expect(UsernameValue1).to.equal('mahadihasan')
+          })
+        
         cy.get("#password").type('Shadhin1995@')
+        cy.get("#password").invoke('prop', 'value').then(PasswordValue1 => {
+            expect(PasswordValue1).to.equal('Shadhin1995@')
+          })
+        
         cy.get('[type="submit"]').click()
         cy.wait(5000)
 
@@ -38,7 +46,15 @@ describe('PWSP Login', () => {
         cy.visit('/')
     
         cy.get("#email").type('mahadihasanjoy')
+        cy.get("#email").invoke('prop', 'value').then(UsernameValue2 => {
+            expect(UsernameValue2).to.equal('mahadihasanjoy')
+          })
+
         cy.get("#password").type('Shadhin1995')
+        cy.get("#password").invoke('prop', 'value').then(PasswordValue2 => {
+            expect(PasswordValue2).to.equal('Shadhin1995')
+          })
+
         cy.get('[type="submit"]').click()
         cy.wait(5000)
     });
@@ -48,6 +64,9 @@ describe('PWSP Login', () => {
         cy.visit('/')
 
         cy.get("#email").type('mahadihasanjoy')
+        cy.get("#email").invoke('prop', 'value').then(UsernameValue3 => {
+            expect(UsernameValue3).to.equal('mahadihasanjoy')
+          })
         //cy.get("#password").type(' ')
         cy.get('[type="submit"]').click()
         cy.wait(3000)
@@ -59,6 +78,10 @@ describe('PWSP Login', () => {
 
         //cy.get("#email").type(' ')
         cy.get("#password").type('Shadhin1995@')
+        cy.get("#password").invoke('prop', 'value').then(PasswordValue3 => {
+            expect(PasswordValue3).to.equal('Shadhin1995@')
+          })
+        
         cy.get('[type="submit"]').click()
         cy.wait(3000)
     });
