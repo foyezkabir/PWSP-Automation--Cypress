@@ -228,8 +228,9 @@ describe("PWSP SignUp", () => {
 		cy.get('.form-body').find('[type="tel"]').then(Phone => {
 			cy.wrap(Phone).type('178336708').invoke('prop', 'value').then(PhoneVlaue => {
 				expect(PhoneVlaue).to.equal('+880178336708')
+				cy.get('.form-body').click()
 				cy.wait(1500)
-				//cy.get('.phn-error-message').should('contain', 'Enter a valid phone number')
+				cy.get('.phn-error-message').should('contain', 'Enter a valid phone number')
 			})
 		})
 
@@ -281,8 +282,9 @@ describe("PWSP SignUp", () => {
 		cy.get('.form-body').find('[type="tel"]').then(Phone => {
 			cy.wrap(Phone).type('1783367056').invoke('prop', 'value').then(PhoneVlaue => {
 				expect(PhoneVlaue).to.equal('+8801783367056')
+				cy.get('.form-body').click()
 				cy.wait(1500)
-				//cy.get('.error-message').should('contain','Customer Already Exists')
+				cy.get('.error-message').should('contain', 'Customer Already Exists')
 			})
 		})
 
@@ -410,7 +412,7 @@ describe("PWSP SignUp", () => {
 
 		cy.get('.form-body').find('[placeholder="DD-MM-YYYY"]').click().then(DOB => {
 			cy.wrap(DOB).type('16-11-1998').invoke('prop', 'value').then(DOBValue => {
-				expect(DOBValue).that.equal('16-11-1998')
+				expect(DOBValue).to.equal('16-11-1998')
 			})
 		})
 
@@ -443,8 +445,9 @@ describe("PWSP SignUp", () => {
 		cy.get('.form-body').find('#name').then(Fullname => {
 			cy.wrap(Fullname).type('   ').invoke('prop', 'value').then(NameVlaue => {
 				expect(NameVlaue).to.equal('   ')
+				cy.get('.form-body').click()
 				cy.wait(1500)
-				//cy.get('.error-message').should('contain', 'Full name is required')
+				cy.get('.error-message').should('contain', 'Full name is required')
 
 			})
 		})
@@ -462,8 +465,9 @@ describe("PWSP SignUp", () => {
 		cy.get('.form-body').find('#current_password').then(Password => {
 			cy.wrap(Password).type('Kabir').invoke('prop', 'value').then(PasswordVlaue => {
 				expect(PasswordVlaue).to.equal('Kabir')
+				cy.get('.form-body').click()
 				cy.wait(1500)
-				//cy.get('.error-message').should('contain', 'password should be at least 6 characters long')
+				cy.get('.error-message').should('contain', 'password should be at least 6 characters long')
 			})
 		})
 
