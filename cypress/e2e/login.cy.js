@@ -1,5 +1,5 @@
 describe('PWSP Login', () => {
-    it('TC-1: Login with Valid username & Password', () => {
+    it.only('TC-1: Login with Valid username & Password', () => {
       // Visit the PWSP login page
         cy.visit('/')
       //cy.visit('https://pwspadmindemo.shadintech.com/pages/login');
@@ -18,7 +18,7 @@ describe('PWSP Login', () => {
   
       // Click on the login button
       cy.get('[type="submit"]').click();
-      cy.wait(5000)
+      cy.wait(4000)
 
     });
 
