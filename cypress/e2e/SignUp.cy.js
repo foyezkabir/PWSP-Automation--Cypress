@@ -520,7 +520,7 @@ describe("PWSP SignUp", () => {
 
 		cy.get('[type="submit"]').click({ force: true })
 		cy.wait(126000).then(OTP => {
-			cy.contains('Send Again').click({ force: true })
+			cy.wrap(OTP).contains('Send Again').click({ force: true })
 			cy.wait(5000)
 		})
 	})
