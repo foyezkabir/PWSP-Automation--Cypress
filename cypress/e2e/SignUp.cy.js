@@ -139,7 +139,9 @@ describe("PWSP SignUp", () => {
 		cy.get('.form-body').find('#confirm_new_password').then(ConfirmPassword => {
 			cy.wrap(ConfirmPassword).type('Kabirwiit18').invoke('prop', 'value').then(ConfirmPasswordVlaue => {
 				expect(ConfirmPasswordVlaue).to.equal('Kabirwiit18')
+				cy.get('.form-body').click()
 				cy.wait(1500)
+				cy.get('.error-message').should('contain', 'Confirm Password does not Match')
 			})
 		})
 
@@ -471,5 +473,55 @@ describe("PWSP SignUp", () => {
 			})
 		})
 
+	})
+
+	it.only('TC-13: Verify the Send OTP Again button', () => {
+		// Visit the PWSP login page
+		cy.visit('/')
+		//cy.visit('https://pwspadmindemo.shadintech.com/pages/login')
+
+		cy.contains('Sign Up').click()
+		cy.wait(1500)
+
+		cy.get('.form-body').find('#name').then(Fullname => {
+			cy.wrap(Fullname).type('Foyez Kabir').invoke('prop', 'value').then(NameVlaue => {
+				expect(NameVlaue).to.equal('Foyez Kabir')
+			})
+		})
+		cy.get('.form-body').find('[type="tel"]').then(Phone => {
+			cy.wrap(Phone).type('1783367097').invoke('prop', 'value').then(PhoneVlaue => {
+				expect(PhoneVlaue).to.equal('+8801783367097')
+			})
+		})
+
+		cy.get('.form-body').find('#current_password').then(Password => {
+			cy.wrap(Password).type('Kabirwiit18#').invoke('prop', 'value').then(PasswordVlaue => {
+				expect(PasswordVlaue).to.equal('Kabirwiit18#')
+			})
+		})
+
+		cy.get('.form-body').find('#confirm_new_password').then(ConfirmPassword => {
+			cy.wrap(ConfirmPassword).type('Kabirwiit18#').invoke('prop', 'value').then(ConfirmPasswordVlaue => {
+				expect(ConfirmPasswordVlaue).to.equal('Kabirwiit18#')
+			})
+		})
+
+		cy.get('.form-body').find('#email').then(Email => {
+			cy.wrap(Email).type('Kabirwiit18@gmail.com').invoke('prop', 'value').then(EmailVlaue => {
+				expect(EmailVlaue).to.equal('Kabirwiit18@gmail.com')
+			})
+		})
+
+		cy.get('.form-body').find('[placeholder="DD-MM-YYYY"]').click().then(DOB => {
+			cy.wrap(DOB).type('16-11-1998').invoke('prop', 'value').then(DOBValue => {
+				expect(DOBValue).to.equal('16-11-1998')
+			})
+		})
+
+		cy.get('[type="submit"]').click({ force: true })
+		cy.wait(126000).then(OTP => {
+			cy.contains('Send Again').click({ force: true })
+			cy.wait(5000)
+		})
 	})
 })
