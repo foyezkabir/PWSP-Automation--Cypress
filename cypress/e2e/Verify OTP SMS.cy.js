@@ -23,7 +23,7 @@ describe('OTP Varification by SMS', () => {
         })
 
         //click submit Create account button
-        cy.get('[type="submit"]').click({ multiple: true, force: true })
+        cy.contains('Create Account').click()
         cy.wait(5000)
     })
 })
