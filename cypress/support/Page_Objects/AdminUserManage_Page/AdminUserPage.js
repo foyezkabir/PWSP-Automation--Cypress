@@ -24,7 +24,7 @@ export class AdminUserManagement {
                 }
             })
             cy.wrap(adduser).get(AdminUserLocators.submitButton).click()
-            cy.wait(8500)
+            cy.wait(10000)
         })
     }
 

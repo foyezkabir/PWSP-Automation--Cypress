@@ -21,7 +21,7 @@ export class Rolemanangement {
             })
 
             cy.wrap(Roleadd).get(RMlocators.submitButton).click() //({ multiple: true, force: true })
-            cy.wait(8500)
+            cy.wait(10000)
         })
     }
 

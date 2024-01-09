@@ -23,7 +23,7 @@ export class CustomerManagement {
             })
 
             cy.wrap(addcustomer).get(CMlocators.submitButton).click()
-            cy.wait(8500)
+            cy.wait(10000)
         })
     }
 
