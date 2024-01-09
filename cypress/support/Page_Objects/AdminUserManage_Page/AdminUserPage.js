@@ -1,17 +1,19 @@
+import { AdminUserLocators } from "./AdminUserLocators"
+
 export class AdminUserManagement {
 
     AddUser(fullname, Username, email, phone, n) {
-        cy.get('[class="pull-right right-header"]').click().wait(2000).then(adduser => {
-            cy.wrap(adduser).get('#user_full_name').type(fullname).wait(500)
-            cy.wrap(adduser).get('#user_name').type(Username).wait(500)
-            cy.wrap(adduser).get('#user_email').type(email).wait(500)
-            cy.wrap(adduser).get('[name="user_phone"]').type(phone).wait(500)
+        cy.get(AdminUserLocators.addButton).click().wait(2000).then(adduser => {
+            cy.wrap(adduser).get(AdminUserLocators.nameInput).type(fullname).wait(500)
+            cy.wrap(adduser).get(AdminUserLocators.usernameInput).type(Username).wait(500)
+            cy.wrap(adduser).get(AdminUserLocators.emailInput).type(email).wait(500)
+            cy.wrap(adduser).get(AdminUserLocators.phoneInput).type(phone).wait(500)
             // selecting user role
-            cy.wrap(adduser).get('#user_role').select(n).wait(500).then(SeleectRole => {
+            cy.wrap(adduser).get(AdminUserLocators.roleSelect).select(n).wait(500).then(SeleectRole => {
                 cy.wrap(SeleectRole).select(n).wait(500)
             })
             // checking status toggle button
-            cy.wrap(adduser).get('div[class="react-switch-bg"]').then(SwitchStatus => {
+            cy.wrap(adduser).get(AdminUserLocators.Status).then(SwitchStatus => {
                 if (SwitchStatus.length) {
                     // Check if the aria-checked attribute exists and its value
                     cy.wrap(SwitchStatus).invoke('attr', 'aria-checked').then(attr => {
@@ -21,35 +23,48 @@ export class AdminUserManagement {
                     })
                 }
             })
-            cy.wrap(adduser).get('.modal-footer .btn').click()
+            cy.wrap(adduser).get(AdminUserLocators.submitButton).click()
             cy.wait(8500)
         })
     }
 
-    UpdateUser(fullname, email, phone, N) {
-        cy.get('tbody').contains('tr', 'Demo Customer').then(editicon => {
-            cy.wrap(editicon).find('td .action-icon').click().then(updateuser => {
-                cy.wrap(updateuser).find('#user_full_name').type(fullname)
-                cy.wrap(updateuser).find('#user_email').type(email)
-                cy.wrap(updateuser).find('[name="user_phone"]').type(phone)
-                cy.wrap(updateuser).find('#user_role').click().then(SeleectRole => {
-                    cy.wrap(SeleectRole).eq(N).click()
+    UpdateUser(fullname, email, phone, n) {
+        cy.get(AdminUserLocators.body).contains(AdminUserLocators.findIcon).then(editicon => {
+            cy.wrap(editicon).find(AdminUserLocators.clickEditIcon).click().then(updateuser => {
+                cy.get(AdminUserLocators.nameInput).type(fullname)
+                cy.get(AdminUserLocators.emailInput).type(email).wait(500)
+                cy.get(AdminUserLocators.phoneInput).type(phone).wait(500)
+                // selecting user role
+                cy.get(AdminUserLocators.roleSelect).select(n).wait(500).then(SeleectRole => {
+                    cy.wrap(SeleectRole).select(n).wait(500)
                 })
-                cy.wrap(updateuser).find('div[class="react-switch-bg"]').click()
+                // checking status toggle button
+                cy.get(AdminUserLocators.Status).then(SwitchStatus => {
+                    if (SwitchStatus.length) {
+                        // Check if the aria-checked attribute exists and its value
+                        cy.wrap(SwitchStatus).invoke('attr', 'aria-checked').then(attr => {
+                            if (attr && attr.includes('true')) {
+                                SwitchStatus.click();
+                            }
+                        })
+                    }
+                })
+                cy.get(AdminUserLocators.submitButton).click()
+                cy.wait(8500)
             })
         })
     }
 
     ResetUserPasswordConfirm() {
-        cy.contains('button', 'Reset Password').click().then(ResetConfirm => {
-            cy.wrap(ResetConfirm).contains('div', 'Confirm').click()
-        })
+        cy.get(AdminUserLocators.body).contains(AdminUserLocators.findIcon)
+        cy.get(AdminUserLocators.clickResetButton).click()
+        cyget(AdminUserLocators.clickConfirm).click()
     }
 
-    ResetUserPasswordCancel() {
-        cy.contains('button', 'Reset Password').click().then(ResetCancel => {
-            cy.wrap(ResetCancel).contains('div', 'Cancel').click()
-        })
+    ResetUserPasswordConfirm() {
+        cy.get(AdminUserLocators.body).contains(AdminUserLocators.findIcon)
+        cy.get(AdminUserLocators.clickResetButton).click()
+        cyget(AdminUserLocators.clickCancel).click()
     }
 }
 

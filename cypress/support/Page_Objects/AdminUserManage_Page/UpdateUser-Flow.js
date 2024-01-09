@@ -1,5 +1,5 @@
 /*
-   ---------- UPDATE USER PROCESS FLOW ----------
+   ---------- ADD USER PROCESS FLOW ----------
 */
 
 // Step 1: Import Locators
@@ -8,13 +8,12 @@
 // Step 2: Define User Management Class
     // Define a class that encapsulates user management functionality. This class will contain methods related to user operations, including adding, updating, and resetting passwords for users.
 
-// Step 3: Implement AddUser Method
-    // Within the class, implement the AddUser method which includes the following steps:
-        //   a. Open Add User Form - Click the button to open the user addition form or modal.
-        //   b. Enter User Details - Input the user's full name, username, email, and phone number into the respective fields.
-        //   c. Select User Role - Choose a user role from a dropdown or selection field.
-        //   d. Optional Status Toggle - Check and click a status toggle switch if it's part of the form.
-        //   e. Submit the Form - Click the submit button to finalize adding the user.
+// Step 3: Implement UpdateUser Method
+    // Implement the UpdateUser method with steps:
+        //   a. Locate and Select Edit Icon - Find the edit icon for the specific user and click to open the edit interface.
+        //   b. Update User Details - Update the user's full name, email, and phone number.
+        //   c. Change User Role - Select a new role for the user if necessary.
+        //   d. Toggle Status - Click to change the user's status if required.
 
 // Step 4: Export the User Management Class Instance
     // Export an instance of the user management class. This makes the class accessible to other files where user management functionality is required.
@@ -23,5 +22,5 @@
     // In test files, import the exported class instance and use its methods to perform actions like adding, updating, or resetting user passwords as part of various test scenarios.
 
 /*
-   ---------- END OF UPDATE USER PROCESS FLOW ----------
+   ---------- END OF ADD USER PROCESS FLOW ----------
 */

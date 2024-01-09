@@ -1,13 +1,15 @@
+import { RMlocators } from "./RM-Locators"
+
 export class Rolemanangement {
 
     AddRole(name, description) {
-        cy.get('[class="btn btn-outline-success btn-sm"]').click().wait(2000).then(Roleadd => {
-            cy.wrap(Roleadd).get('#role_name').type(name).wait(500)
-            cy.wrap(Roleadd).get('.summary').type(description).wait(500)
+        cy.get(RMlocators.addButton).click().wait(2000).then(Roleadd => {
+            cy.wrap(Roleadd).get(RMlocators.nameInput).type(name).wait(500)
+            cy.wrap(Roleadd).get(RMlocators.descriptionInput).type(description).wait(500)
             //cy.wrap(Roleadd).get('div .react-switch-bg').click().wait(500)
 
             // checking status toggle button
-            cy.wrap(Roleadd).get('div[class="react-switch-bg"]').then(SwitchStatus => {
+            cy.wrap(Roleadd).get(RMlocators.Status).then(SwitchStatus => {
                 if (SwitchStatus.length) {
                     // Check if the aria-checked attribute exists and its value
                     cy.wrap(SwitchStatus).invoke('attr', 'aria-checked').then(attr => {
@@ -18,18 +20,18 @@ export class Rolemanangement {
                 }
             })
 
-            cy.wrap(Roleadd).get('[class="btn btn-outline-success btn-sm"]').click() //({ multiple: true, force: true })
+            cy.wrap(Roleadd).get(RMlocators.submitButton).click() //({ multiple: true, force: true })
             cy.wait(8500)
         })
     }
 
     EditRole(name) {
-        cy.get('tbody').contains('tr', 'Demo').then(editicon => {
-            cy.wrap(editicon).get('.action-icon').click().wait(500)
-            cy.wrap(editicon).get('#role_name').clear().type(name).wait(500)
+        cy.get(RMlocators.body).contains(RMlocators.findIcon).then(editicon => {
+            cy.wrap(editicon).get(RMlocators.clickEditIcon).click().wait(500)
+            cy.wrap(editicon).get(RMlocators.nameInput).clear().type(name).wait(500)
 
             // checking status toggle button
-            cy.wrap(editicon).get('div[class="react-switch-bg"]').then(SwitchStatus => {
+            cy.wrap(editicon).get(RMlocators.Status).then(SwitchStatus => {
                 if (SwitchStatus.length) {
                     // Check if the aria-checked attribute exists and its value
                     cy.wrap(SwitchStatus).invoke('attr', 'aria-checked').then(attr => {
@@ -40,25 +42,25 @@ export class Rolemanangement {
                 }
             })
 
-            cy.wrap(editicon).get('[class="btn btn-primary"]').click()
+            cy.wrap(editicon).get(RMlocators.submitButton).click()
             cy.wait(8500)
-            cy.wrap(editicon).get('td').eq(0).should('contain', name)
+            cy.wrap(editicon).get(RMlocators.tColumn).eq(0).should('contain', name)
         })
     }
 
     DeleteRoleConfirm() {
-        cy.get('tbody').contains('tr', 'Demo').then(Delete => {
-            cy.wrap(Delete).get('.m-l-10').click().wait(1500).then(ConfirmDelete => {
-                cy.wrap(ConfirmDelete).get('.modal-content').contains('Confirm').click()
+        cy.get(RMlocators.body).contains(RMlocators.findIcon).then(Delete => {
+            cy.wrap(Delete).get(RMlocators.clickDeleteIcon).click().wait(1500).then(ConfirmDelete => {
+                cy.wrap(ConfirmDelete).get(RMlocators.decision).contains(RMlocators.confirm).click()
                 cy.wait(8500)
             })
         })
     }
 
     DeleteRoleCancel() {
-        cy.get('tbody').contains('tr', 'Demo').then(Delete => {
-            cy.wrap(Delete).get('.m-l-10').click().wait(1500).then(CancelDelete => {
-                cy.wrap(CancelDelete).get('.modal-content').contains('Cancel').click()
+        cy.get(RMlocators.body).contains(RMlocators.findIcon).then(Delete => {
+            cy.wrap(Delete).get(RMlocators.clickDeleteIcon).click().wait(1500).then(CancelDelete => {
+                cy.wrap(CancelDelete).get(RMlocators.decision).contains(RMlocators.confirm).click()
                 cy.wait(2000)
             })
         })

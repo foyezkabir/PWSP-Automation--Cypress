@@ -18,13 +18,13 @@ describe('Navigate to Menu & Sub-Menus', () => {
         OnRoleListPage.AddRole('NEW ROLE ONE', 'THIS IS NEW ROLE')
     })
 
-    it.only('Navigate to Admin User List page', () => {
+    it('Navigate to Admin User List page', () => {
         NavigateTo.AdminUserManagement()
         //Arguments = fullname, Username, email, phone, n
         OnAdminUserPage.AddUser('NEW USER', 'XYZ18', 'XYZ@gmail.com', '+8801783376098', 2)
     })
 
-    it('Navigate to Customer List page', () => {
+    it.only('Navigate to Customer List page', () => {
         NavigateTo.CustomerManagement()
         //Arguments = CusName, phone, email, DOB, address
         OnCustomerManagementPage.AddCustomer('NEW CUSTOMER', '01783385076', 'XYZ@gmail.com', '16-02-1999', 'XYZ, Road #2, IJK, LMNOP')
