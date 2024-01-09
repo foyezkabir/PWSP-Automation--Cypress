@@ -3,18 +3,18 @@ export class NavigationPage {
 
     }
     RoleManagementPage() {
-        cy.contains('Role Management').click()
-        cy.contains('Role List').click()
+        cy.contains('Role Management').click().wait(1000)
+        cy.contains('Role List').click().wait(3000)
     }
 
     AdminUserManagement() {
-        cy.contains('Admin User Management').click()
-        cy.contains('Admin User List').click()
+        cy.contains('Admin User Management').click().wait(1000)
+        cy.contains('Admin User List').click().wait(3000)
     }
 
     CustomerManagement() {
-        cy.contains('Customer Management').click()
-        cy.get('[class="fa fa-circle"]').eq(2).click({ multiple: true, force: true })
+        cy.contains('Customer Management').click().wait(1000)
+        cy.get('[class="fa fa-circle"]').eq(2).click({ multiple: true, force: true }).wait(3000)
     }
 }
 
